@@ -1,6 +1,6 @@
 // MovieList
 // import propTypes from 'prop-types';
-// import style from './MovieCast.module.css'
+// import style from './comp-style/MovieCast.module.css'
 function MovieCast() {
     return (
         <div>

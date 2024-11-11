@@ -1,5 +1,5 @@
 // import propTypes from 'prop-types';
-// import style from './MovieReview.module.css'
+// import style from './comp-style/MovieReview.module.css'
 function MovieReview() {
     return (
         <div>

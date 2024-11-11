@@ -1,5 +1,5 @@
 // import { useState } from 'react'
-// import css from'./App.module.css'
+// import css from'./comp-style/App.module.css'
 import { Suspense, lazy } from 'react';
 import { Routes, Route,} from "react-router-dom";
 import Home from '../pages/HomePage.jsx';
@@ -10,7 +10,7 @@ import Navigation from '../components/Navigation.jsx';
 
 const LazyMovieCast = lazy(() => import('../components/MovieCast.jsx'));
 const LazyMovieList = lazy(() => import('../components/MovieList.jsx'));
-const LazyMovieReview = lazy(() => import('../components/MovieReview.jsx'));
+const LazyMovieReview = lazy(() => import('../components/MovieReviews.jsx'));
 
 
 function App() {
