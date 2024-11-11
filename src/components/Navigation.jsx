@@ -14,7 +14,6 @@ const buildLinkClass = ({ isActive }) => {
 //   to add go back button we need to use uselocation hook <3
 
 function Navigation() {
-    
     return (
         <div>
             

@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 // import css from'./comp-style/App.module.css'
-import { Suspense, lazy } from 'react';
-import { Routes, Route,} from "react-router-dom";
+import { Suspense, lazy, useEffect } from 'react';
+import { Routes, Route, useLocation} from "react-router-dom";
 import Home from '../pages/HomePage.jsx';
 import MovieDetailsPage from '../pages/MovieDetailsPage.jsx';
 import MoviesPage from '../pages/MoviesPage.jsx';
@@ -14,7 +14,10 @@ const LazyMovieReview = lazy(() => import('../components/MovieReviews.jsx'));
 
 
 function App() {
-
+  const location = useLocation();
+  useEffect(() => {
+    console.log('Page changed to:', location.pathname);
+  }, [location]);
   return (
     <div>
       <Navigation />
