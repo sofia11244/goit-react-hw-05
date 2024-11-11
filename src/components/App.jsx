@@ -24,10 +24,10 @@ function App() {
           <Route path="/movies" element={<MoviesPage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
           
-          <Route>
-            <Route path="/movies/:movieId/cast" element={<LazyMovieCast />} />
-            <Route path="/movies/:movieId/review" element={<LazyMovieReview />} />
-            <Route path="/movies/:movieId/list" element={<LazyMovieList />} />
+          <Route path="/movies/:movieId">
+            <Route path="cast" element={<LazyMovieCast />} />
+            <Route path="review" element={<LazyMovieReview />} />
+            <Route path="list" element={<LazyMovieList />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
