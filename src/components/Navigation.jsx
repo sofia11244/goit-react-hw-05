@@ -1,6 +1,6 @@
 // import propTypes from 'prop-types';
 
-import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
 import style from './comp-style/Navigation.module.css'
 import clsx from 'clsx';
@@ -32,25 +32,15 @@ function Navigation() {
     )
 }
 
+
 function BackButton() {
-    const location = useLocation();
-    const prevLocation = location.state?.from || "/";
-    return (
-        <div>
-            {prevLocation !== "/" && (
+  const navigate = useNavigate();
 
-                <Link to={"/"}>            
-                    <button>Go Back</button>           
-                </Link> 
-            )}
-
-            {prevLocation === "/" && (
-                    <Link to="/">                   
-                            <button>Go Back Home</button>
-                    </Link>
-            )}
-        </div>     
-);
+  return (
+    <>
+      <button onClick={() => navigate(-1)}>go back</button>
+    </>
+  );
 }
 
 export default Navigation;
