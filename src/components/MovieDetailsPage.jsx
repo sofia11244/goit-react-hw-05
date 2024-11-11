@@ -1,2 +1,0 @@
-// movie cast
-// movie reviews
