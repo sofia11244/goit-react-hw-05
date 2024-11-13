@@ -27,11 +27,12 @@ function App() {
     try{
       const response= await axios.get('https://api.themoviedb.org/3/movie/popular',{
         params: {
-          api_key: 'abf4a7519efb6b65aa422dd153078d69',
-          page: 1
-        }});
-        const data = response.data.results;
-        setFilms(data);
+          api_key: import.meta.env.VITE_REACT_APP_API_KEY,
+        }
+      });
+      const data = response.data.results;
+      console.log(response.data);
+      setFilms(data);
     } catch(error){
       console.log("error", error);
     }
