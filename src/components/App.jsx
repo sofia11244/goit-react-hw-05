@@ -1,6 +1,7 @@
 // import { useState } from 'react'
 // import css from'./comp-style/App.module.css'
-import { Suspense, lazy, useEffect } from 'react';
+import axios from 'axios';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, useLocation} from "react-router-dom";
 import Home from '../pages/HomePage.jsx';
 import MovieDetailsPage from '../pages/MovieDetailsPage.jsx';
@@ -18,19 +19,45 @@ function App() {
   useEffect(() => {
     console.log('Page changed to:', location.pathname);
   }, [location]);
+
+
+  const [films, setFilms] = useState([]);
+
+  const fetchFilms = async () => {
+    try{
+      const response= await axios.get('https://api.themoviedb.org/3/movie/popular',{
+        params: {
+          api_key: 'abf4a7519efb6b65aa422dd153078d69',
+          page: 1
+        }});
+        const data = response.data.results;
+        setFilms(data);
+    } catch(error){
+      console.log("error", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchFilms();
+  }, []);
+
+
+
+
+
+
   return (
     <div>
       <Navigation />
       <Suspense fallback={<div>Loading...</div>}> 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<><Home /><LazyMovieList films={films}/></>}/>
           <Route path="/movies" element={<MoviesPage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
           
           <Route path="/movies/:movieId">
             <Route path="cast" element={<LazyMovieCast />} />
             <Route path="review" element={<LazyMovieReview />} />
-            <Route path="list" element={<LazyMovieList />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
