@@ -5,19 +5,18 @@ import { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, useLocation} from "react-router-dom";
 import Home from '../pages/HomePage.jsx';
 import MovieDetailsPage from '../pages/MovieDetailsPage.jsx';
-import MoviesPage from '../pages/MoviesPage.jsx';
+// import MoviesPage from '../pages/MoviesPage.jsx';
 import NotFound from '../pages/NotFoundPage.jsx';
 import Navigation from '../components/Navigation.jsx';
 
-const LazyMovieCast = lazy(() => import('../components/MovieCast.jsx'));
 const LazyMovieList = lazy(() => import('../components/MovieList.jsx'));
+const LazyMovieCast = lazy(() => import('../components/MovieCast.jsx'));
 const LazyMovieReview = lazy(() => import('../components/MovieReviews.jsx'));
 
 
 function App() {
   const location = useLocation();
   useEffect(() => {
-    console.log('Page changed to:', location.pathname);
   }, [location]);
 
 
@@ -29,12 +28,33 @@ function App() {
         params: {
           api_key: import.meta.env.VITE_REACT_APP_API_KEY,
         }
-      });
-      const data = response.data.results;
-      console.log(response.data);
-      setFilms(data);
-    } catch(error){
-      console.log("error", error);
+      }); 
+
+      //NEEDED TO FECTH API AGAIN BCUZ CAST DECIDED TO NOT SHOW 
+      //WHO DID NOT PAY THE BILLS FOR THE API
+
+
+      const filmsWithCast = await Promise.all(
+        response.data.results.map(async (movie) => {
+          const castResponse = await axios.get(
+            `https://api.themoviedb.org/3/movie/${movie.id}/credits`,
+            {
+              params: {
+                api_key: import.meta.env.VITE_REACT_APP_API_KEY,
+              },
+            }
+          );
+          return { //to merge both film and cast
+            ...movie,
+            cast: castResponse.data.cast.slice(0, 5),
+          };
+        })
+      );
+
+
+      setFilms(filmsWithCast); //upload to state 
+    } catch (error) {
+      console.log("Error fetching films:", error);
     }
   };
 
@@ -53,10 +73,8 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}> 
         <Routes>
           <Route path="/" element={<><Home /><LazyMovieList films={films}/></>}/>
-          <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-          
-          <Route path="/movies/:movieId">
+          {/* <Route path="/movies" element={<MoviesPage />} />  */}
+          <Route path="/movies/:movieId"  element={<MovieDetailsPage />} >
             <Route path="cast" element={<LazyMovieCast />} />
             <Route path="review" element={<LazyMovieReview />} />
           </Route>

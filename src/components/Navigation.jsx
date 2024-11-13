@@ -13,7 +13,6 @@ const buildLinkClass = ({ isActive }) => {
 
 
 //   to add go back button we need to use uselocation hook <3
-
 function Navigation() {
 
     const location = useLocation();
@@ -26,12 +25,9 @@ function Navigation() {
         <div>
             
             <nav className={style.nav}>
-            <NavLink to="/"  className={buildLinkClass}>Home</NavLink>
-            <NavLink to="/movies"  className={buildLinkClass}>Movies</NavLink>
-            <NavLink to="/movies/:movieId"  className={buildLinkClass}>Movie details</NavLink>
-            <NavLink to="/movies/:movieId/cast"  className={buildLinkClass}>Cast</NavLink>
-            <NavLink to="/movies/:movieId/review"  className={buildLinkClass}>Reviews</NavLink>
-            <NavLink to="/movies/:movieId/list"  className={buildLinkClass}>List</NavLink>
+            <NavLink to="/"  className={buildLinkClass}>Home</NavLink> <br/>  
+            {/* <NavLink to="/movies"  className={buildLinkClass}>Movies</NavLink> */}
+            <NavLink to="/movies/:movieId"  className={buildLinkClass}>Search Movies </NavLink>
             <Outlet />
             </nav>
             <BackButton />

@@ -1,13 +1,22 @@
 // import propTypes from 'prop-types';
 // import style from './comp-style/MovieReview.module.css'
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 
 function MovieReview() {
-    const { MovieReviewId } = useParams(); 
+    
+ const location = useLocation();
+ const { film } = location.state;
+
     return (
         <div>
-            <h1>MovieReview</h1>
-            <p>Now showing product with id - {MovieReviewId}</p>
+            {film ? (
+            <div> 
+            <p>{film.overview}</p>
+            </div>
+      ) : (
+        <p>Film verisi bulunamadı.</p>
+      )}
         </div>
     )
 }
