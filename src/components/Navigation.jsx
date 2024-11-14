@@ -27,10 +27,10 @@ function Navigation() {
             <nav className={style.nav}>
             <NavLink to="/"  className={buildLinkClass}>Home</NavLink> <br/>  
             {/* <NavLink to="/movies"  className={buildLinkClass}>Movies</NavLink> */}
-            <NavLink to="/movies/:movieId"  className={buildLinkClass}>Search Movies </NavLink>
+            <NavLink to="/movies"  className={buildLinkClass}>Search Movies </NavLink>
             <Outlet />
             </nav>
-            <BackButton />
+            <BackButton prevLocation={prevLocation.current} />
         </div>
     )
 }
@@ -39,12 +39,14 @@ function Navigation() {
 function BackButton() {
   const navigate = useNavigate();
   const location = useLocation();
+
   if (location.pathname === '/') {
     return null;
   }
   return (
     <>
       <button onClick={() => navigate(-1)}>go back</button>
+      <button onClick={() => navigate('/')}>Go home</button>
     </>
   );
 }

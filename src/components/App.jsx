@@ -5,7 +5,7 @@ import { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, useLocation} from "react-router-dom";
 import Home from '../pages/HomePage.jsx';
 import MovieDetailsPage from '../pages/MovieDetailsPage.jsx';
-// import MoviesPage from '../pages/MoviesPage.jsx';
+import MoviesPage from '../pages/MoviesPage.jsx';
 import NotFound from '../pages/NotFoundPage.jsx';
 import Navigation from '../components/Navigation.jsx';
 
@@ -73,7 +73,7 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}> 
         <Routes>
           <Route path="/" element={<><Home /><LazyMovieList films={films}/></>}/>
-          {/* <Route path="/movies" element={<MoviesPage />} />  */}
+          <Route path="/movies" element={<MoviesPage />} /> 
           <Route path="/movies/:movieId"  element={<MovieDetailsPage />} >
             <Route path="cast" element={<LazyMovieCast />} />
             <Route path="review" element={<LazyMovieReview />} />
