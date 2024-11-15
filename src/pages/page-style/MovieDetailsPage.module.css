@@ -1,32 +1,46 @@
-.container{
+.container {
+  /* Buraya genel düzenlemeler eklenebilir */
 }
-.nav{
+.content{
     display: flex;
     flex-direction: column;
-}
-.imgNav{
-    display: flex;
-    flex-direction: row;
-}
-.navOverview{}
-.navCast{
-    list-style: none;
+    align-items: center;
+    padding: 0 10% 10% 10%;
+    justify-content: center;
+
 }
 
-/* Navbar düzeni için Flexbox kullanın */
 .nav {
-    display: flex;  /* Yatayda hizalamak için */
-    justify-content: space-between; /* Bağlantılar arasında boşluk bırak */
-  }
-  
-  .nav a {
-    text-decoration: none;  /* Altını çizili yapma */
-  }
-  
-  .nav h4 {
-    margin: 0; /* H4 öğesinin etrafındaki boşluğu kaldır */
-  }
+  display: flex;
+  justify-content: space-between; 
+  flex-direction: row;  
+  gap: 1rem;  
+}
 
-  /* CSS */
+.nav a {
+  text-decoration: none;  
+}
 
-  
+.nav h4 {
+  margin: 0;  
+}
+
+.navOverview, .navCast {
+  padding: 0.5rem; 
+}
+
+.img {
+  max-width: 50%; 
+  height: auto;  
+}
+
+.imgNav {
+  display: flex;
+  flex-direction: row;
+}
+
+.navCast, .navOverview {
+  list-style: none;
+  padding-top: 20px;
+
+}

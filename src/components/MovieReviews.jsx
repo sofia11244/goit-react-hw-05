@@ -1,5 +1,5 @@
 // import propTypes from 'prop-types';
-// import style from './comp-style/MovieReview.module.css'
+import style from './comp-style/MovieReviews.module.css'
 import { useLocation } from 'react-router-dom';
 
 
@@ -12,7 +12,7 @@ function MovieReview() {
         <div>
             {film ? (
             <div> 
-            <p>{film.overview}</p>
+            <p className={style.overview}>{film.overview}</p>
             </div>
       ) : (
         <p>Film verisi bulunamadı.</p>
