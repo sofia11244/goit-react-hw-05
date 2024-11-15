@@ -32,13 +32,3 @@ MovieList.propTypes = {
 };
 
 export default MovieList;
-// const [error, setError] = useState(null);
-
-// useEffect(() => {
-//   axios
-//     .get(url, options)
-//     .then((response) => {
-//       setFilms(response.data.results);
-//     })
-//     .catch((err) => setError('Error fetching films'));
-// }, []);

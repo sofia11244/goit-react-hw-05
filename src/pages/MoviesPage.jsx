@@ -37,6 +37,7 @@ const MoviesPage = ({ films, fetchSearchFilms }) => {
             ))
           ) : (
             <p>No movies found. Try searching for something else.</p>
+            
           )
         ) : (
           <p>Search for a movie to see results.</p>

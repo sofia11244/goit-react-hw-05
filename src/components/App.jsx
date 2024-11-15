@@ -3,6 +3,8 @@
 import axios from 'axios';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, useLocation} from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
+
 import Home from '../pages/HomePage.jsx';
 import MovieDetailsPage from '../pages/MovieDetailsPage.jsx';
 import MoviesPage from '../pages/MoviesPage.jsx';
@@ -53,6 +55,7 @@ function App() {
       setFilms(filmsWithCast); //upload to state 
     } catch (error) {
       console.log("Error fetching films:", error);
+      toast.error('Something went wrong. Please try again.');
     }
   };
   
@@ -67,6 +70,7 @@ function App() {
       setFilms(response.data.results);
     } catch (error) {
       console.log("Error fetching search results:", error);
+      toast.error('Something went wrong. Please try again.');
     }
   };
 
@@ -87,6 +91,7 @@ function App() {
   return (
     <div>
       <Navigation />
+      <Toaster />
       <Suspense fallback={<div>Loading...</div>}> 
         <Routes>
           <Route path="/" element={<><Home /><LazyMovieList films={films}/></>}/>
