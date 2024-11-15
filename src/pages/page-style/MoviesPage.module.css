@@ -1,0 +1,72 @@
+
+/* className={style.button}
+className={style.buttonAlt} */
+.inputItem{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+
+}
+.input{
+    background-color: rgb(18, 18, 18);
+    color: white;
+    border-radius: 5px;
+    border: 1px solid rgb(40, 38, 38);
+    height: 40px;
+    width: 200px;
+    font-size: medium;
+}
+
+
+.button{
+    margin-left: 10px;
+    color: white;
+    background-color: rgb(18, 18, 18);
+    border: 1px solid rgb(40, 38, 38);
+    border-radius: 5px;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.inputText{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    cursor:default;
+}
+
+.list{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+    gap: 60px;
+}
+
+.listTitle{
+    font-size: large;
+    max-width: 100%;
+    text-align: center;
+
+}
+
+.listItem{
+    max-width: 200px;
+}
+
+.img{
+    max-width: 100%;
+}
+
+.listItem a {
+    text-decoration: none; 
+    color: inherit;        
+}
+
+.listItem a:hover {
+    text-decoration: none; 
+}

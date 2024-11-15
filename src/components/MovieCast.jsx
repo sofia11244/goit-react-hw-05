@@ -1,6 +1,6 @@
 // MovieList
 // import propTypes from 'prop-types';
-// import style from './comp-style/MovieCast.module.css'
+import style from './comp-style/MovieCast.module.css'
 import { useLocation } from 'react-router-dom';
 
 function MovieCast() {
@@ -9,10 +9,8 @@ function MovieCast() {
 
     return (
         <div>
-        <div> 
-          <h4>Cast:</h4>
           {film.cast ? (
-            <ul>
+            <ul className={style.castList}>
               {film.cast.map((actor) => (
                 <li key={actor.id}>
                   <p>{actor.name}</p>
@@ -20,9 +18,8 @@ function MovieCast() {
               ))}
             </ul>
           ) : (
-            <p>Yükleniyor...</p>
+            <p>Couldn&apos;t find the cast data.</p>
           )}
-        </div>
         </div>
     )
 }

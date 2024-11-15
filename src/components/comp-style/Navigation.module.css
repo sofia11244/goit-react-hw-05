@@ -1,0 +1,23 @@
+.button{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    max-width: 150px;
+}
+
+.buttonAlt{
+ color: white;
+ background-color: rgb(18, 18, 18);
+ border: 1px solid rgb(40, 38, 38);
+ border-radius: 5px;
+ padding: 6px;
+ font-size: medium;
+cursor: pointer;
+}
+.nav{
+    display: flex;
+    justify-content: flex-end; 
+    gap: 20px;
+    padding: 20px;
+}

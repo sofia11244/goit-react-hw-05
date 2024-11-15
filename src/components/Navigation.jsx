@@ -1,4 +1,4 @@
-// import propTypes from 'prop-types';
+
 
 import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useRef, useEffect } from 'react';
@@ -28,9 +28,9 @@ function Navigation() {
             <NavLink to="/"  className={buildLinkClass}>Home</NavLink> <br/>  
             {/* <NavLink to="/movies"  className={buildLinkClass}>Movies</NavLink> */}
             <NavLink to="/movies"  className={buildLinkClass}>Search Movies </NavLink>
-            <Outlet />
-            </nav>
-            <BackButton prevLocation={prevLocation.current} />
+            <Outlet /> 
+            </nav>  <hr />
+            <BackButton prevLocation={prevLocation.current} /> 
         </div>
     )
 }
@@ -44,16 +44,11 @@ function BackButton() {
     return null;
   }
   return (
-    <>
-      <button onClick={() => navigate(-1)}>go back</button>
-      <button onClick={() => navigate('/')}>Go home</button>
-    </>
+    <div className={style.button}> 
+      <button className={style.buttonAlt} onClick={() => navigate(-1)}>Go back</button>
+      <button className={style.buttonAlt} onClick={() => navigate('/')}>Go home</button>
+    </div>
   );
 }
 
 export default Navigation;
-
-Navigation.protoTypes = {
-    
-}
-

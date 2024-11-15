@@ -1,13 +1,23 @@
 import { useLocation, Link, Outlet } from 'react-router-dom';
-import { Suspense} from 'react';
+import { Suspense, useEffect, useRef} from 'react';
+import style from './page-style/MovieDetailsPage.module.css';
 
 
 function MovieDetailsPage() {
   const location = useLocation();
-  const { film } = location.state; // Access the passed movie data
+  const { film } = location.state;
+  const outletRef = useRef(null);
 
+  useEffect(() => {
+
+    if (outletRef.current) {
+      outletRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [location]);
+
+  
   return (
-    <div>
+    <div className={style.container}>
       {film ? (
         <div>
           <h3>{film.title}</h3>
@@ -17,13 +27,16 @@ function MovieDetailsPage() {
             alt={film.title}
           />
           
-        <nav>
-            <Link to="review" state={{ film }}>Overview</Link><br/>           
-            <Link to="cast" state={{ film }}>Cast</Link>
-        </nav>
+          <nav className={style.nav}>
+              <Link className={style.navOverview} to="review" state={{ film }}><h4>Overview</h4></Link><br/>           
+              <Link className={style.navCast}to="cast" state={{ film }}><h4>Cast</h4></Link>
+          </nav>
           
           <Suspense fallback={<p>Loading the section...</p>}>
-            <Outlet /> {/* Displays nested components (review or cast) */}
+          <div ref={outletRef}>
+          <Outlet /> 
+
+          </div>
           </Suspense>
         </div>
       ) : (
@@ -34,3 +47,4 @@ function MovieDetailsPage() {
 }
 
 export default MovieDetailsPage;
+

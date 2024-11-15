@@ -1,9 +1,9 @@
-// import { useState } from 'react'
 // import css from'./comp-style/App.module.css'
 import axios from 'axios';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, useLocation} from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
+import style from './comp-style/App.module.css'
 
 import Home from '../pages/HomePage.jsx';
 import MovieDetailsPage from '../pages/MovieDetailsPage.jsx';
@@ -90,7 +90,7 @@ function App() {
 
   return (
     <div>
-      <Navigation />
+      <Navigation className={style.nav}/>
       <Toaster />
       <Suspense fallback={<div>Loading...</div>}> 
         <Routes>

@@ -1,0 +1,32 @@
+.container{
+}
+.nav{
+    display: flex;
+    flex-direction: column;
+}
+.imgNav{
+    display: flex;
+    flex-direction: row;
+}
+.navOverview{}
+.navCast{
+    list-style: none;
+}
+
+/* Navbar düzeni için Flexbox kullanın */
+.nav {
+    display: flex;  /* Yatayda hizalamak için */
+    justify-content: space-between; /* Bağlantılar arasında boşluk bırak */
+  }
+  
+  .nav a {
+    text-decoration: none;  /* Altını çizili yapma */
+  }
+  
+  .nav h4 {
+    margin: 0; /* H4 öğesinin etrafındaki boşluğu kaldır */
+  }
+
+  /* CSS */
+
+  
