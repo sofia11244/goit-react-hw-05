@@ -50,19 +50,36 @@ function App() {
           };
         })
       );
-
-
       setFilms(filmsWithCast); //upload to state 
     } catch (error) {
       console.log("Error fetching films:", error);
     }
   };
+  
+  const fetchSearchFilms = async (searchQuery = '') => {
+    try {
+      const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
+        params: {
+          api_key: import.meta.env.VITE_REACT_APP_API_KEY,
+          query: searchQuery,
+        }
+      });
+      setFilms(response.data.results);
+    } catch (error) {
+      console.log("Error fetching search results:", error);
+    }
+  };
+
+  // useEffect(() => {
+  //   fetchFilms();
+  // }, []);
+
 
   useEffect(() => {
-    fetchFilms();
-  }, []);
-
-
+    if (location.pathname === '/') {
+      fetchFilms();
+    }
+  }, [location]);
 
 
 
@@ -73,7 +90,7 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}> 
         <Routes>
           <Route path="/" element={<><Home /><LazyMovieList films={films}/></>}/>
-          <Route path="/movies" element={<MoviesPage />} /> 
+          <Route path="/movies" element={<MoviesPage fetchSearchFilms={fetchSearchFilms} films={films} />} /> 
           <Route path="/movies/:movieId"  element={<MovieDetailsPage />} >
             <Route path="cast" element={<LazyMovieCast />} />
             <Route path="review" element={<LazyMovieReview />} />
